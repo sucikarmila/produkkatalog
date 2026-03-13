@@ -1,89 +1,209 @@
 <x-app-layout>
-    <div class="py-10 bg-gradient-to-br from-black via-gray-900 to-orange-900 min-h-screen">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        .font-syne { font-family: 'Syne', sans-serif; }
+        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 30px 60px -15px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-action::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-action:hover::after {
+            left: 100%;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-up { animation: slideUp 0.6s ease-out forwards; }
+    </style>
+
+    <div class="min-h-screen bg-[#f8fafc] font-jakarta py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-indigo-100/50 rounded-full blur-[100px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto">
             
-            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6 border-b border-orange-500/20 pb-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-14 gap-8 animate-up">
                 <div>
-                    <h2 class="text-5xl font-black text-white uppercase tracking-tighter">
-                        Welcome <span class="text-orange-500 italic drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]">DASHBOARD</span>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="h-[2px] w-8 bg-blue-600"></span>
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em]"> Panel Kendali</span>
+                    </div>
+                    <h2 class="text-6xl font-black text-slate-900 tracking-tighter font-syne uppercase leading-[0.8]">
+                        PRODUK <span class="text-blue-600 italic">Hub.</span>
                     </h2>
-                    <p class="text-gray-400 text-[10px] mt-2 uppercase tracking-[0.4em] font-bold">
-                        Welcome back, <span class="text-orange-500">{{ Auth::user()->name }}</span> • System Operational
+                    <p class="text-slate-500 mt-6 text-lg">
+                        Selamat berkarya, <span class="text-slate-900 font-extrabold">{{ Auth::user()->name }}</span> 
                     </p>
                 </div>
                 
-                <div class="flex gap-4">
-                    <a href="{{ route('foto.index') }}" 
-                       class="bg-orange-500 text-black font-black px-8 py-3 rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.4)] border-2 border-white/20 uppercase text-[10px] tracking-widest">
-                        Open Gallery
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('foto.index') }}" class="btn-action text-white px-10 py-5 rounded-2xl font-black text-xs tracking-[0.2em] flex items-center gap-4 shadow-2xl shadow-blue-500/20 transition-all">
+                        JELAJAHI SEKARANG <i class="bi bi-arrow-right-short text-2xl"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-                <div class="bg-white/10 backdrop-blur-lg border border-orange-500/30 p-6 rounded-3xl shadow-2xl flex flex-col justify-between group hover:bg-orange-500 transition-all duration-500">
-                    <p class="text-orange-400 group-hover:text-black text-[9px] font-black uppercase tracking-widest mb-4 transition-colors">Account Role</p>
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl font-black text-white group-hover:text-black uppercase tracking-wider transition-colors">{{ auth()->user()->role }}</span>
-                    </div>
-                </div>
-
-                <div class="bg-orange-600 text-black p-6 rounded-3xl flex flex-col justify-between shadow-[0_20px_40px_rgba(249,115,22,0.3)] border-2 border-white/20">
-                    <p class="text-black/60 text-[9px] font-black uppercase tracking-widest mb-4">System Status</p>
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-black uppercase italic">Active</span>
-                        <div class="w-3 h-3 rounded-full bg-black animate-ping"></div>
-                    </div>
-                </div>
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 
+                <div class="glass-card p-8 rounded-[3rem] relative overflow-hidden animate-up" style="animation-delay: 0.1s">
+                    <div class="relative z-10 flex items-center gap-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-rose-50 to-rose-100 text-rose-500 rounded-[2rem] flex items-center justify-center shadow-sm">
+                            <i class="bi bi-heart-fill text-4xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1">Suka</p>
+                            <h4 class="text-4xl font-black text-slate-900 tracking-tighter">
+                                {{ \App\Models\LikeFoto::where('UserID', auth()->id())->count() }}
+                            </h4>
+                            <p class="text-[10px] font-bold text-rose-500 mt-1 uppercase">Total Disukai</p>
+                        </div>
+                    </div>
+                    <i class="bi bi-heart-fill absolute -right-4 -bottom-4 text-8xl text-rose-500/5 rotate-12"></i>
+                </div>
 
-                <div class="bg-white/10 backdrop-blur-lg border border-orange-500/30 p-6 rounded-3xl shadow-2xl flex flex-col justify-between">
-                    <p class="text-orange-400 text-[9px] font-black uppercase tracking-widest mb-4">Server Time</p>
-                    <div class="text-xl font-bold text-white uppercase tracking-tighter">
-                        {{ now()->format('H:i') }} <span class="text-orange-500 text-xs">WIB</span>
+                <div class="glass-card p-8 rounded-[3rem] relative overflow-hidden animate-up" style="animation-delay: 0.2s">
+                    <div class="relative z-10 flex items-center gap-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 rounded-[2rem] flex items-center justify-center shadow-sm">
+                            <i class="bi bi-chat-square-text-fill text-4xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1">Komentar</p>
+                            <h4 class="text-4xl font-black text-slate-900 tracking-tighter">
+                                {{ \App\Models\KomentarFoto::where('UserID', auth()->id())->count() }}
+                            </h4>
+                            <p class="text-[10px] font-bold text-blue-600 mt-1 uppercase">Total Komentar</p>
+                        </div>
+                    </div>
+                    <i class="bi bi-chat-left-dots-fill absolute -right-4 -bottom-4 text-8xl text-blue-500/5 -rotate-12"></i>
+                </div>
+
+                <div class="bg-slate-900 p-8 rounded-[3rem] flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden animate-up" style="animation-delay: 0.3s">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"></div>
+                    <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-3">Waktu Sistem Langsung</p>
+                    <h4 id="realtime-clock" class="text-5xl font-black text-white tracking-tighter font-syne tabular-nums">
+                        00:00:00
+                    </h4>
+                    <div class="mt-3 px-4 py-1.5 bg-white/5 rounded-full border border-white/10">
+                        <p id="realtime-date" class="text-[10px] font-bold text-blue-400 uppercase tracking-widest"></p>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-black/40 backdrop-blur-md border border-orange-500/20 overflow-hidden relative rounded-[3rem] shadow-2xl">
-                <div class="absolute -right-10 -bottom-10 opacity-10">
-                    <svg class="w-80 h-80 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-up" style="animation-delay: 0.4s">
+                <div class="lg:col-span-2">
+                    <div class="glass-card p-12 rounded-[4rem] min-h-[450px] flex flex-col justify-center relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-12 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="bi bi-rocket-takeoff text-[15rem] text-blue-600"></i>
+                        </div>
 
-                <div class="p-10 md:p-16 relative z-10">
-                    <div class="max-w-2xl">
-                        {{-- <span class="text-orange-500 text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">
-                            Secure Authentication
-                        </span>
-                        <h3 class="text-5xl font-black text-white tracking-tight uppercase mb-6 leading-none">
-                            ACCESS <span class="text-orange-500">GRANTED.</span>
-                        </h3> --}}
-                        <p class="text-gray-300 text-sm leading-relaxed tracking-widest mb-10 border-l-4 border-orange-500 pl-6">
-                            Sistem galeri telah siap digunakan. Anda dapat mulai mengunggah aset visual, mengatur koleksi album, dan memantau interaksi pengguna melalui panel navigasi utama. 
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-6">
-                            <a href="{{ route('foto.create') }}" class="group flex items-center gap-4 text-white hover:text-orange-500 transition-all">
-                                <span class="w-12 h-px bg-orange-500 group-hover:w-20 transition-all"></span>
-                                <span class="text-[10px] font-black uppercase tracking-[0.5em]">Create New Galery</span>
-                            </a>
+                        <div class="relative z-10">
+                            <h3 class="text-5xl font-black text-slate-900 tracking-tighter uppercase mb-8 leading-none">
+                                Bebaskan <span class="text-blue-600">Kreativitas.</span><br>
+                                Bagikan <span class="italic text-slate-400">Inspirasi.</span>
+                            </h3>
+                            <p class="text-slate-500 max-w-md mb-12 text-lg leading-relaxed font-medium">
+                                Gunakan fitur galeri untuk memantau tren visual terbaru. Dashboard Anda mensinkronisasi semua interaksi secara real-time.
+                            </p>
+                            <div class="flex items-center gap-8">
+                                <a href="{{ route('foto.create') }}" class="group flex items-center gap-4 text-slate-900 font-black text-xs uppercase tracking-[0.3em]">
+                                    <span class="w-12 h-[3px] bg-blue-600 group-hover:w-20 transition-all duration-500"></span> 
+                                    TELUSURI KARYA
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                
-            </div>
+                <div class="glass-card p-10 rounded-[3.5rem] flex flex-col">
+                    <div class="flex items-center justify-between mb-10">
+                        <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
+                            <span class="flex h-2 w-2 rounded-full bg-blue-600 animate-ping"></span>
+                            Aktivitas Terbaru
+                        </h5>
+                        <i class="bi bi-three-dots text-slate-300"></i>
+                    </div>
+                    
+                    <div class="space-y-8 flex-grow">
+                        @php
+                            $latestComments = \App\Models\KomentarFoto::where('UserID', auth()->id())
+                                                              ->with('user')
+                                                              ->latest()
+                                                              ->take(4)
+                                                              ->get();
+                        @endphp
 
-            <div class="mt-12 flex items-center justify-center gap-4">
-                <div class="h-px w-8 bg-orange-500/40"></div>
-                <p class="text-[9px] text-gray-500 font-black uppercase tracking-[1em]">
-                    STUDIOONE • 2026
-                </p>
-                <div class="h-px w-8 bg-orange-500/40"></div>
+                        @forelse($latestComments as $comment)
+                            <div class="flex gap-5 items-start group">
+                                <div class="w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex-shrink-0 flex items-center justify-center text-sm font-black text-slate-700 shadow-sm group-hover:from-blue-600 group-hover:to-blue-700 group-hover:text-white transition-all duration-300">
+                                    {{ substr($comment->user->name, 0, 1) }}
+                                </div>
+                                <div class="border-b border-slate-100 pb-4 w-full">
+                                    <p class="text-[12px] font-black text-slate-900 mb-1">{{ $comment->user->name }}</p>
+                                    <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed italic font-medium">"{{ $comment->IsiKomentar }}"</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="text-center py-10">
+                                <i class="bi bi-chat-left-quote text-4xl text-slate-100 mb-4 block"></i>
+                                <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Belum Ada Aktivitas</p>
+                            </div>
+                        @endforelse
+                    </div>
+
+                    <a href="#" class="mt-8 text-center text-[10px] font-black text-slate-400 hover:text-blue-600 uppercase tracking-[0.3em] transition-colors">
+                        Lihat Semua Aktivitas
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('realtime-clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('realtime-date').textContent = now.toLocaleDateString('id-ID', options);
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 </x-app-layout>

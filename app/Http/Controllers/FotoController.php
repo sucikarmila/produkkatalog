@@ -74,23 +74,7 @@ public function destroyKomentar($id)
     ]);
 }
 
-public function index()
-{
-    $fotos = Foto::withCount(['likes', 'komentars'])->latest()->get(); 
-    
-    foreach($fotos as $foto) {
-        $foto->isLikedByUser = \App\Models\LikeFoto::where('FotoID', $foto->FotoID)
-                                ->where('UserID', auth()->id())->exists();
-        
-        $foto->all_comments = \App\Models\KomentarFoto::where('FotoID', $foto->FotoID)
-                                ->whereNull('parent_id') 
-                                ->with(['user', 'replies.user']) 
-                                ->latest()
-                                ->get();
-    }
 
-    return view('foto.index', compact('fotos'));
-}
 public function storeKomentar(Request $request, $id) 
 {
     $request->validate([
@@ -117,20 +101,26 @@ public function store(Request $request)
         'AlbumID' => 'required|exists:albums,AlbumID', 
     ]);
 
-    $file = $request->file('file');
-    $namaFile = time() . '_' . $file->getClientOriginalName();
-    $file->move(public_path('storage/fotos'), $namaFile);
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        
+        $namaFile = time() . '_' . $file->getClientOriginalName();
+        
+        $file->storeAs('fotos', $namaFile, 'public'); 
 
-    \App\Models\Foto::create([
-        'JudulFoto' => $request->JudulFoto,
-        'DeskripsiFoto' => $request->DeskripsiFoto,
-        'TanggalUnggah' => now(),
-        'LokasiFile' => $namaFile,
-        'AlbumID' => $request->AlbumID,
-        'UserID' => auth()->id(),
-    ]);
+        \App\Models\Foto::create([
+            'JudulFoto' => $request->JudulFoto,
+            'DeskripsiFoto' => $request->DeskripsiFoto,
+            'TanggalUnggah' => now(),
+            'LokasiFile' => $namaFile, 
+            'AlbumID' => $request->AlbumID,
+            'UserID' => auth()->id(),
+        ]);
 
-    return redirect()->route('foto.index')->with('success', 'Foto berhasil ditambahkan ke album!');
+        return redirect()->route('foto.index')->with('success', 'Foto berhasil ditambahkan!');
+    }
+
+    return back()->with('error', 'File gagal diunggah.');
 }
 public function edit($id)
 {
@@ -177,5 +167,13 @@ public function destroy($id)
     $foto->delete();
 
     return back()->with('success', 'Foto berhasil dihapus!');
+}
+public function index()
+{
+    $fotos = Foto::withCount(['likes', 'komentars'])->orderBy('created_at', 'desc')->get();
+    
+    $albums = Album::all(); 
+
+    return view('foto.index', compact('fotos', 'albums'));
 }
 }

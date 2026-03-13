@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\Foto;
 use Illuminate\Support\Facades\Auth; 
 class AlbumController extends Controller
 {
     public function index()
-    {
-        $albums = Album::with('user')->withCount('fotos')->get();
-        return view('albums.index', compact('albums'));
-    }
+{
+    $albums = Album::with('fotos')->get();
+    
+    $fotos = Foto::all(); 
+
+    return view('albums.index', compact('albums', 'fotos'));
+}
 
     public function create()
     {

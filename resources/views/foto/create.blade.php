@@ -7,7 +7,15 @@
                     ADD <span class="text-white">GALLERY</span>
                 </h2>
             </div>
-
+            @if ($errors->any())
+    <div class="bg-red-500 text-white p-4 rounded-lg mb-4">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             <div class="bg-white overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-[2.5rem] border border-orange-400/30">
                 <div class="p-8 md:p-10">
                     <form action="{{ route('foto.store') }}" method="POST" enctype="multipart/form-data">
