@@ -40,19 +40,7 @@
             <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-blue-900/20 to-transparent z-10"></div>
         </div>
 
-        <div class="absolute top-10 right-20 z-20 hidden lg:block animate-float" style="animation-delay: 0s;">
-            <div class="bg-white/90 p-4 rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                        <i class="bi bi-person-plus text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">New Account</p>
-                        <p class="text-xs font-black text-slate-800">Registration Process</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="relative w-full max-w-[550px] p-6 z-30 my-10">
             <div class="glass-card rounded-[3rem] p-8 sm:p-12 transition-all duration-500 hover:shadow-2xl">
@@ -127,7 +115,7 @@
 
                     <div class="pt-4">
                         <button type="submit" class="w-full h-14 product-tag hover:opacity-90 text-white font-black rounded-2xl shadow-lg shadow-blue-500/30 transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1">
-                            <span class="tracking-widest text-[11px]">DAFTAR SEKARANG</span>
+                            <span class="tracking-widest text-[11px]">DAFTAR</span>
                             <i class="bi bi-arrow-right-short text-2xl"></i>
                         </button>
                     </div>
@@ -136,7 +124,7 @@
                 <div class="mt-8 text-center border-t border-slate-200/50 pt-6">
                     <p class="text-xs text-slate-500 font-semibold">
                         Sudah punya akun? 
-                        <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-800 font-black ml-1 uppercase tracking-tighter text-[11px]">Login Di Sini</a>
+                        <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-800 font-black ml-1 uppercase tracking-tighter text-[11px]">Login</a>
                     </p>
                 </div>
             </div>
