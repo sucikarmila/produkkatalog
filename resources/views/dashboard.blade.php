@@ -58,11 +58,11 @@
                 <div>
                     <div class="flex items-center gap-3 mb-4">
                         <span class="h-[2px] w-8 bg-blue-600"></span>
-                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em]"> Panel Kendali</span>
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em]">DASHBOARD</span>
                     </div>
-                    <h2 class="text-6xl font-black text-slate-900 tracking-tighter font-syne uppercase leading-[0.8]">
-                        PRODUK <span class="text-blue-600 italic">Hub.</span>
-                    </h2>
+                    <h3 class="text-6xl font-black text-slate-900 tracking-tighter font-syne uppercase leading-[0.8]">
+                        PRODUK <span class="text-blue-600 italic">try.</span>
+                    </h3>
                     <p class="text-slate-500 mt-6 text-lg">
                         Selamat berkarya, <span class="text-slate-900 font-extrabold">{{ Auth::user()->name }}</span> 
                     </p>
@@ -137,7 +137,7 @@
                                 Gunakan fitur galeri untuk memantau tren visual terbaru. Dashboard Anda mensinkronisasi semua interaksi secara real-time.
                             </p>
                             <div class="flex items-center gap-8">
-                                <a href="{{ route('foto.create') }}" class="group flex items-center gap-4 text-slate-900 font-black text-xs uppercase tracking-[0.3em]">
+                                <a href="{{ route('foto.index') }}" class="group flex items-center gap-4 text-slate-900 font-black text-xs uppercase tracking-[0.3em]">
                                     <span class="w-12 h-[3px] bg-blue-600 group-hover:w-20 transition-all duration-500"></span> 
                                     TELUSURI KARYA
                                 </a>
@@ -150,7 +150,7 @@
                     <div class="flex items-center justify-between mb-10">
                         <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
                             <span class="flex h-2 w-2 rounded-full bg-blue-600 animate-ping"></span>
-                            Aktivitas Terbaru
+                            komentar terbaru
                         </h5>
                         <i class="bi bi-three-dots text-slate-300"></i>
                     </div>
@@ -182,9 +182,7 @@
                         @endforelse
                     </div>
 
-                    <a href="#" class="mt-8 text-center text-[10px] font-black text-slate-400 hover:text-blue-600 uppercase tracking-[0.3em] transition-colors">
-                        Lihat Semua Aktivitas
-                    </a>
+                    
                 </div>
             </div>
         </div>

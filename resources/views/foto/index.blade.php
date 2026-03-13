@@ -22,9 +22,14 @@
     </div>
 @endif
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <h2 class="text-4xl font-extrabold text-blue-600 uppercase tracking-widest drop-shadow-md">
-                    DAFTAR <span class="text-blue-900">PRODUK</span>
-                </h2>
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="h-1 w-10 bg-blue-600 rounded-full"></span>
+                        <span class="text-[11px] font-extrabold text-blue-600 uppercase tracking-[0.3em]">DAFTAR PRODUK</span>
+                    </div>
+                    
+                    <p class="text-slate-400 mt-4 text-lg font-medium">Lihat semua produk dalam satu genggaman.</p>
+                </div>
                 
                 @if(strtolower(auth()->user()->role) == 'admin')
                     <button type="button" @click="openAddModal = true" 
