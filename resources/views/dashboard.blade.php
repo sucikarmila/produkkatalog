@@ -64,7 +64,7 @@
                         PRODUK <span class="text-blue-600 italic">try.</span>
                     </h3>
                     <p class="text-slate-500 mt-6 text-lg">
-                        Selamat berkarya, <span class="text-slate-900 font-extrabold">{{ Auth::user()->name }}</span> 
+                        Selamat Datang, <span class="text-slate-900 font-extrabold">{{ Auth::user()->name }}</span> 
                     </p>
                 </div>
                 

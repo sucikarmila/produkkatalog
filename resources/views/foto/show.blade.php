@@ -3,7 +3,7 @@
         <div class="max-w-6xl w-full mx-auto px-4">
             
             <a href="{{ route('foto.index') }}" class="inline-flex items-center text-gray-500 hover:text-black mb-4 transition-all font-semibold text-sm">
-                <i class="bi bi-chevron-left mr-2"></i> Kembali ke Galeri
+                <i class="bi bi-chevron-left mr-2"></i> Kembali
             </a>
 
             <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-2xl flex flex-col lg:flex-row lg:h-[85vh]">
@@ -134,7 +134,6 @@
     </div>
 
     <script>
-        // Fungsi Balas
         function siapkanBalasan(nama, id) {
             document.getElementById('reply-info').classList.remove('hidden');
             document.getElementById('reply-name').innerText = nama;
@@ -149,7 +148,6 @@
             document.getElementById('input-komentar').placeholder = "Tambahkan komentar...";
         }
 
-        // Fungsi Like Ajax
         function likeFoto(element, fotoId) {
             fetch(`/foto/${fotoId}/like`, {
                 method: 'POST',
@@ -161,10 +159,8 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Update counter
                 document.querySelectorAll('.like-count').forEach(el => el.innerText = data.likes_count.toLocaleString());
                 
-                // Update icon heart dengan animasi
                 document.querySelectorAll('.heart-icon').forEach(el => {
                     el.innerHTML = data.isLiked 
                         ? '<i class="bi bi-heart-fill text-red-500 animate-heart-beat"></i>' 
@@ -174,7 +170,6 @@
             .catch(error => console.error('Error:', error));
         }
 
-        // Button Post state
         const input = document.getElementById('input-komentar');
         const btn = document.getElementById('btn-submit');
         input.addEventListener('input', () => {
