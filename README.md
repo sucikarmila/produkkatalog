@@ -60,8 +60,8 @@ Pastikan environment Anda memenuhi syarat (PHP \>= 8.2 & MySQL).
 
 1.  **Clone & Enter**
     ```bash
-    git clone [https://github.com/sucikarmila/perpustakaan.git](https://github.com/sucikarmila/perpustakaan.git)
-    cd perpustakaan
+    git clone [https://github.com/sucikarmila/galeri.git](https://github.com/sucikarmila/galeri.git)
+    cd galeri
     ```
 2.  **Dependencies & Asset Building**
     ```bash
@@ -86,6 +86,24 @@ Pastikan environment Anda memenuhi syarat (PHP \>= 8.2 & MySQL).
 
 -----
 
+## 🔧 Debugging & Troubleshooting
+
+Jika Anda menemukan kendala teknis, silakan merujuk pada panduan debug berikut:
+
+  * **Error 404 pada Gambar Produk**:
+    Pastikan *symbolic link* sudah terhubung dengan benar. Jalankan `php artisan storage:link`.
+  * **Database Connection Refused**:
+    Cek kembali file `.env`, pastikan `DB_PORT`, `DB_USERNAME`, dan `DB_PASSWORD` sesuai dengan konfigurasi database lokal Anda.
+  * **Vite Manifest Not Found**:
+    Jika tampilan CSS/JS berantakan, pastikan Anda sudah menjalankan `npm run build` atau gunakan `npm run dev` saat masa pengembangan.
+  * **Clear Cache & Optimization**:
+    Jika perubahan kode tidak muncul, jalankan perintah pembersihan massal:
+    ```bash
+    php artisan optimize:clear
+    ```
+
+-----
+
 ## 📊 Matriks Hak Akses
 
 | Kapabilitas Sistem | Manager (Admin) | Member (User) |
@@ -97,4 +115,11 @@ Pastikan environment Anda memenuhi syarat (PHP \>= 8.2 & MySQL).
 
 -----
 
-_**photo documentation on the folder HASIL in github **_
+## 📸 Photo Documentation
+
+Seluruh tampilan antarmuka (UI), hasil pengujian fitur, dan dokumentasi lainnya telah diorganisir di dalam repository.
+
+👉 **[Lihat Dokumentasi Visual di Folder HASIL](https://github.com/sucikarmila/produkkatalog/tree/main/HASIL)**
+
+-----
+
